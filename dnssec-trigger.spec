@@ -1,7 +1,9 @@
+%global _hardened_build 1
+
 Summary: NetworkManager plugin to update/reconfigure DNSSEC resolving
 Name: dnssec-trigger
 Version: 0.11
-Release: 21%{?dist}
+Release: 22%{?dist}
 License: BSD
 Url: http://www.nlnetlabs.nl/downloads/dnssec-trigger/
 Source: http://www.nlnetlabs.nl/downloads/dnssec-trigger/%{name}-%{version}.tar.gz
@@ -21,6 +23,7 @@ Patch2: dnssec-trigger-842455.patch
 # https://www.nlnetlabs.nl/bugs-script/show_bug.cgi?id=489
 Patch3: dnssec-trigger-0.11-nl489.patch
 Patch4: dnssec-trigger-0.11-coverity_scan.patch
+Patch5: dnssec-trigger-rh1254473.patch
 
 Requires(postun): initscripts
 Requires: ldns >= 1.6.10, NetworkManager, NetworkManager-glib, unbound, xdg-utils
@@ -50,10 +53,9 @@ sed -i "s/-panel//" panel/dnssec-trigger-panel.desktop.in
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %build
-export LDFLAGS="$LDFLAGS -Wl,-z,now"
-
 %configure  --with-keydir=/etc/dnssec-trigger 
 %{__make} %{?_smp_mflags}
 
@@ -136,6 +138,10 @@ fi
 
 
 %changelog
+* Wed May 18 2016 Tomas Hozza <thozza@redhat.com> - 0.11-22
+- Improved text in the GUI panel in Hotspot sign-on mode (#1254473)
+- Build all binaries with PIE hardening (#1092526)
+
 * Tue Feb 11 2014 Tomas Hozza <thozza@redhat.com> - 0.11-21
 - handle IndexError exception in NM script until NM provides better API (#1063735)
 - restart NM when stopping dnssec-trigger daemon instead of handling
