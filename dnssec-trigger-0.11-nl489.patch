@@ -1,0 +1,12 @@
+diff -up dnssec-trigger-0.11/panel/dnssec-trigger-panel.desktop.in.nl489 dnssec-trigger-0.11/panel/dnssec-trigger-panel.desktop.in
+--- dnssec-trigger-0.11/panel/dnssec-trigger-panel.desktop.in.nl489	2013-03-04 18:48:38.606852783 +0100
++++ dnssec-trigger-0.11/panel/dnssec-trigger-panel.desktop.in	2013-03-04 18:48:46.838834610 +0100
+@@ -8,7 +8,7 @@ Comment=Shows DNS state and warning dial
+ Exec=0bindir0/dnssec-trigger
+ Icon=0uidir0/status-icon.png
+ Terminal=false
+-Categories=Application;Utility;
++Categories=Utility;
+ X-KDE-StartupNotify=false
+ StartupNotify=false
+ 

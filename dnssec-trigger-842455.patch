@@ -1,0 +1,10 @@
+--- dnssec-trigger-0.11-orig/riggerd/riggerd.c	2012-07-24 10:27:43.638865272 -0400
++++ dnssec-trigger-0.11/riggerd/riggerd.c	2012-07-24 10:51:39.910814143 -0400
+@@ -298,6 +298,7 @@
+ 	   so that during the reboot there is no window of opportunity */ 
+ 	if(svr->insecure_state)
+ 		hook_resolv_localhost(cfg);
++	hook_resolv_uninstall(cfg); /* we want to remove immutable flag on TERM when systemd signals us */
+ 	unlink_pid(cfg->pidfile);
+ 	log_info("%s stop", PACKAGE_STRING);
+ 	svr_delete(svr);

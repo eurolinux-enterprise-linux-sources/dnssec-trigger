@@ -1,0 +1,80 @@
+# config for dnssec-trigger 0VERSION0.
+# this is a comment. there must be one statement per line.
+
+# logging detail, 0=only errors, 1=operations, 2=detail, 3,4 debug detail.
+# verbosity: 1
+
+# pidfile location
+# pidfile: "0pidfile0"
+
+# log to a file instead of syslog, default is to syslog
+# logfile: "/var/log/dnssec-trigger.log"
+
+# log to syslog, or (log to to stderr or a logfile if specified). yes or no.
+# use-syslog: yes
+
+# chroot to this directory
+# chroot: ""
+
+# the unbound-control binary if not found in PATH.
+# commandline options can be appended "unbound-control -c my.conf" if you wish.
+# unbound-control: "0unbound_control_path0"
+
+# where is resolv.conf to edit.
+# resolvconf: "/etc/resolv.conf"
+
+# the domain example.com line (if any) to add to resolv.conf(5). default none.
+# domain: ""
+
+# domain name search path to add to resolv.conf(5). default none.
+# the search path from DHCP is not picked up, it could be used to misdirect.
+# search: ""
+
+# the command to run to open login pages on hot spots, a web browser.
+# empty string runs no command.
+# login-command: "0login_command0"
+
+# the url to open to get hot spot login, it gets overridden by the hotspot.
+# login-location: "0login_location0"
+
+# do not perform actions (unbound-control or resolv.conf), for a dry-run.
+# noaction: no
+
+# port number to use for probe daemon.
+# port: 8955
+
+# these keys and certificates can be generated with the script
+# dnssec-trigger-control-setup
+# server-key-file: "0keydir0/dnssec_trigger_server.key"
+# server-cert-file: "0keydir0/dnssec_trigger_server.pem"
+# control-key-file: "0keydir0/dnssec_trigger_control.key"
+# control-cert-file: "0keydir0/dnssec_trigger_control.pem"
+
+# check for updates, download and ask to install them (for Windows, OSX).
+# check-updates: 0check_updates0
+
+# webservers that are probed to see if internet access is possible.
+# They serve a simple static page over HTTP port 80.  It probes a random url:
+# after a space is the content expected on the page, (the page can contain
+# whitespace before and after this code).  Without urls it skips http probes.
+
+# provided by NLnetLabs
+# It is provided on a best effort basis, with no service guarantee.
+url: "http://ster.nlnetlabs.nl/hotspot.txt OK"
+
+# provided by FedoraProject
+url: "http://fedoraproject.org/static/hotspot.txt OK"
+
+# fallback open DNSSEC resolvers that run on TCP port 80 and TCP port 443.
+# the ssl443 adds an ssl server IP, you may also specify one or more hashes
+# the following on one line: ssl443:<space><IP>{<space><HASHoutput>}
+# hash is output of openssl x509 -sha256 -fingerprint -in server.pem
+# You can add more with extra config lines.
+
+# provided by NLnetLabs
+# It is provided on a best effort basis, with no service guarantee.
+tcp80: 213.154.224.3
+tcp80: 2001:7b8:206:1:bb::
+ssl443: 213.154.224.3 DC:22:7B:1C:00:1A:CE:C5:48:49:B1:E3:30:DE:61:93:61:12:4E:CB:5C:B4:33:C4:BC:75:8C:D6:16:9D:F0:9F
+ssl443: 2001:7b8:206:1:bb:: DC:22:7B:1C:00:1A:CE:C5:48:49:B1:E3:30:DE:61:93:61:12:4E:CB:5C:B4:33:C4:BC:75:8C:D6:16:9D:F0:9F
+

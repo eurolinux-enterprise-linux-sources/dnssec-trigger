@@ -1,0 +1,510 @@
+7 June 2012: Wouter
+	- tag 0.11 release.
+
+6 June 2012: Wouter
+	- fix permissions on root key for OSX.
+
+5 June 2012: Wouter
+	- wait for old daemon to stop in osx install at setdns.sh.
+	- fix OSX unbound to be able to write root.key from the chroot.
+	- manpage for check-updates option.
+
+1 June 2012: Wouter
+	- Http redirect support, for plain http check, in case hotspot has
+	  a proxy that starts giving the internet contents.
+	- GUI for OSX for software updates.
+	- fix osx execl for software install.
+	- update tray icon for osx software install.
+	- fix osx comma in multiple DNS servers.
+	- fix update installer
+
+31 May 2012: Wouter
+	- Fix bug in processing tray icon results from daemon.
+	- url can contain numerical IP address and port number, in http
+	  implementation.
+
+22 May 2012: Wouter
+	- Fix windows upgrade to preserve config files and to preserve the
+	  installed (or not-installed) startmenu links.
+	- Fix to not mess up the config files on a reinstall on windows.
+
+21 May 2012: Wouter
+	- windows runs installer from userspace.
+	- windows dnssectrigger depends on unbound for boot invocation,
+	  this fixes an error where it cannot tell unbound what to do.
+	- fix updater for double callback due to retry and double reply.
+	- fix slash in downloaded file and executed file (windows).
+	- linebuffer for dnssec-trigger-control stdout, for results printout.
+
+18 May 2012: Wouter
+	- improved printout of SSL_ERROR_SYSCALL errors.
+	- do not print interface-unknown and conn-reset errors upon system
+	  restart for windows, only printed on high verbosity.
+
+2 April 2012: Wouter
+	- Remove debug print from update code.
+	- Add debug prints to update code.
+	- Fix FIONBIO error on windows.
+
+30 March 2012: Wouter
+	- windows implementation for update dialog and selfupdate.
+	- work on osx update dialog and selfupdate.
+	- lint clean.
+
+29 March 2012: Wouter
+	- fix exit of panel and threads
+	- fix read multiple persist actions in one SSL packet frame.
+	- gtk gui to ask for install of new software.  No unix action exists.
+
+26 March 2012: Wouter
+	- lock unlock and delete at exit of panel is improved.
+
+15 March 2012: Wouter
+	- configure windows detects GetAdaptersAdresses (XP and later).
+	- snapshot for test.
+	- Fix compatibility with VirtualBox on Windows, that messes with the
+	  network adapters.  Solution works on windows XP and later (detected
+	  by configure).
+	- Fix trayicon on windows high DPI settings to look better.
+	- silence connect() http errors, unless verbosity 2.
+	- stop other download if one succeeds (happy eyeballs) on selfupdate.
+
+13 March 2012: Wouter
+	- self update work.
+
+12 March 2012: Wouter
+	- self update work.
+
+9 March 2012: Wouter
+	- update osx config to new config template.
+	- login-command and login-location man page entries.
+	- windows shows browser on login.
+	- debug prints removed from http.
+
+8 March 2012: Wouter
+	- OSX GUI for no web access dialog.
+	- OSX update dnssec-trigger.conf with new url settings.
+	- OSX fix the double-window shown bug, bug in NSWindow deminiaturize func.
+	- open web browser to login to a hot spot.
+
+7 March 2012: Wouter
+	- print syntax error for url config items.
+	- skip_http control command.
+	- raise dialog to top on GTK.
+	- GTK gui for hot spot sign on.
+	- workon windows GUI for no web hot spot sign on.
+
+6 March 2012: Wouter
+	- Fix memleak in new config url content.
+	- Fix probe count when http is done.
+	- probe logic that keeps track of http_insecure mode.
+	- retry every 10 seconds for 5 minutes in http_insecure mode.
+	- fix test_tcp, test_ssl, unsafe commands.
+	- fix to show failed address lookups in probe results.
+
+5 March 2012: Wouter
+	- distinguish 2xx, 3xx and other (404) http rcodes.
+	- config file contains the expected content of the urls.
+	- ssl can list multiple hashes (for certificate rollover).
+
+2 March 2012: Wouter
+	- http check is performed, nonblocking.  Lookup of addres(es), A, AAAA
+	  to the (up to 5) DHCP DNS resolvers.  3 urls are checked, until one
+	  connects, then it checks content.  IP4 and IP6, until first works.
+	- url for ster.nlnetlabs.nl and fedoraproject.org added in config.
+	- absolute sbindir in netconfig hooks.
+
+23 Feb 2012: Wouter
+	- fedora package files updated.
+
+22 Feb 2012: Wouter
+	- Fix Fedora bug with no DNS servers in resolv.conf with absolute path
+	  in networkmanager hook script.
+	- The .desktop entry name without 'panel'.
+
+17 Feb 2012: Wouter
+	- and osx status icon file changed.
+	- release 0.10
+	- trunk is 0.11 under development.
+
+16 Feb 2012: Wouter
+	- Do not show the insecure and hotspot windows at the same time.
+	- Fix for OSX to show the popups on top of the other windows.
+	- alert icon easier to read.
+
+25 Jan 2012: Wouter
+	- version set to 0.10: dnssec-trigger is experimental.
+
+23 Jan 2012: Wouter
+	- updated acx.nlnetlabs.m4 for gcc 4.6 compat for portability tests.
+
+19 Jan 2012: Wouter
+	- show package version in probe results dialog.
+
+17 Jan 2012: Wouter
+	- do not just refresh the systray, but entire desktop (for windows).
+	- fix dnssec-trigger-control error printout if SSL files fail.
+	- dnssec-trigger-control uses registry config location (for windows).
+	- install script removes leftover trayicons using direct windows API.
+
+14 Jan 2012: Wouter
+	- show version number in add-removeprograms configpanel (windows).
+	- refresh systray after install to solve stray tray icon (for windows).
+
+13 Jan 2012: Wouter
+	- Use Processes.dll code (can be freely used, source provided) for
+	  kill process in windows NSIS installer.  Compiled to 6kb (not 50kb).
+	  Processes.dll was made by Andrei Ciubotaru.
+	- Attempt to add DHCPv6 support for windows.
+	- If hotspot-signon, set override servers right away on a network
+	  change, so the user does not have to wait for 10 seconds after a
+	  change of the wifi.
+
+10 Jan 2012: Wouter
+	- truncate pidfile portable to windows.
+
+6 Jan 2012: Wouter
+	- truncate pidfile (just like NSD fix, in case directory not owned).
+
+19 Dec 2011: Wouter
+	- wait some more during reinstall on windows, to help race condition.
+	- release 0.9
+	- trunk is 1.0 under development.
+
+16 Dec 2011: Wouter
+	- attempt to fix endless loop on windows (reported by Alan Clegg).
+	- windows installer waits for services to come to a full stop.
+
+15 Dec 2011: Wouter
+	- detailprints in windows installer and uninstaller.
+	- stoppanels waits for the connection of the panel to close, this
+	  may remove re-install race conditions.
+
+14 Dec 2011: Wouter
+	- Set hook throttleinterval to 1 second, this reduces the osx wakeup
+	  and bootup wrong probes because the hook was throttled for 10 seconds.
+
+13 Dec 2011: Wouter
+	- release 0.8.
+	- trunk is 0.9 under development.
+
+12 Dec 2011: Wouter
+	- Fix apple brick by installer, because of tarfile inclusion of
+	  extended attributes that overwrote system dir extended attributes.
+
+5 Dec 2011: Wouter
+	- sigHUP reloads config and reopens logfile for log rotation support.
+	- acxnlnetlabs updated to version 17.
+	- fix fedora16 windows crosscompile.
+	- fix double definition of malloc.
+
+2 Dec 2011: Wouter
+	- configure generated with autoconf 2.6.8.
+
+30 Nov 2011: Wouter
+	- Fix where race condition could cause blacklist of open resolver.
+	- Fix to flush_infra and flush_requestlist when we use open resolver,
+	  the proxy that causes this to be used as fallback has polluted those
+	  entries (possibly).
+
+29 Nov 2011: Wouter
+	- Fix bug where no IPv6 causes wrong test results, notably SSL, due
+	  to the error report code.
+
+13 Nov 2011: Wouter
+	- control unsafe shows the dialog popup again.
+
+9 Nov 2011: Wouter
+	- Fix that if network down (nothing pings) then it picks disconnect,
+	  for slow bootup where the machine has the previous network settings.
+
+8 Nov 2011: Wouter
+	- the test_tcp and test_ssl command do not have the 20-sec tcpretry
+	  once timer, so that the test can try unbound.
+	- config for new open resolver (port 80 TCP, port 443 SSL).  No more
+	  probe plain tcp on port 443.
+
+7 Nov 2011: Wouter
+	- fixed the OSX installer problem, launchd does not load userspace
+	  agents without hacks, and has side-effects that enables boot-start.
+	- more detailed logging at verbosity 4 (prints wire and dig output).
+
+4 Nov 2011: Wouter
+	- on OSX update config if old (no ssl443).
+	- on OSX install config file before attempting to modify it.
+
+3 Nov 2011: Wouter
+	- remove error dialog at end of osx install.
+
+2 Nov 2011: Wouter
+	- check ssl fingerprint of servers.
+	- remind user on make install about ssl443.
+
+1 Nov 2011: Wouter
+	- probe ssl servers (nlnetlabs default server configured).
+
+31 Oct 2011: Wouter
+	- do not log errors for unclean ssl close.
+
+28 Oct 2011: Wouter
+	- documentation fixes
+	- osx dmg install fix for 10.6 packager (start of userspace panel).
+	  also framework for debug logging in postflight of packager.
+	  10.6 packages work on 10.7.  10.7 packages work on 10.7.
+	- tag 0.7
+	- trunk is 0.8 under development.
+	- macinstall, launch unbound-anchor at boot (update if offline months)
+	- echo in Makefile and newline if no probe performed.
+
+27 Oct 2011: Wouter
+	- osx dmg install and uninstall works.
+	- for caches, also test if NSEC3 is present for QTYPE=NULL nodata.
+
+26 Oct 2011: Wouter
+	- uninstall command for OSX (put in the DMG).
+
+25 Oct 2011: Wouter
+	- fix echo at end of make install.
+	- osx makepackage, donated by Carsten Strotmann.
+
+22 Oct 2011: Wouter
+	- fix unknown options for dnssec-trigger-panel, prints version too.
+
+21 Oct 2011: Wouter
+	- Add @ to echo in Makefile.
+	- print error on control unknown command, and exit status 1.
+	- tag 0.6
+	- trunk is 0.7 under development.
+	- fix that setup hint is not printed on a reinstall.
+	- stop executables before re-install of dnssec-trigger.
+	- tested to work on winXP (thanks Jan-Piet Mens).
+	- fix printout of 1970 date, instead that no probe was performed.
+
+18 Oct 2011: Wouter
+	- Manpage fixes
+	- can build outside of sourcedir.
+	- libappindicator support, for Ubuntu Unity desktop GUI.
+
+17 Oct 2011: Wouter
+	- Fix insecure mode after dnstcp443 has been probed.
+	- Fix OS-race on Linux/BSD, it sets immutable settings on install, and
+	  checks this regularly (and fixes if necessary).
+
+13 Oct 2011: Wouter
+	- the dnssec-trigger-panel (gtk2) works on the XFCE desktop.
+	- windows package works, tested Vista.
+	- osx fix for insecure mode.
+
+12 Oct 2011: Wouter
+	- makes resolv.conf immutable and restores on uninstall.
+
+10 Oct 2011: Wouter
+	- detect transparent proxies and avoid them.
+
+29 Sep 2011: Wouter
+	- mac cocoa gui for hotspot signon.
+	- 0.5 release.
+
+28 Sep 2011: Wouter
+	- nsis uninstall welcome image.
+	- gtk menu item and dialog for hotspot signon.
+	- win32 menu item and dialog for hotspot signon.
+	- install unbound with dnssec-trigger on windows.  Reduced install
+	  size and available for configuration by installer.exe.
+
+27 Sep 2011: Wouter
+	- for windows, get unbound-control config and path from registry.
+	- new IP6 address for the service at nlnetlabs.
+	- fix for windows busy loop in dnssectriggerd.
+	- do not log error for RPC server not started in windows.
+
+26 Sep 2011: Wouter
+	- tentative fix for windows loop bug: if wlanapi.dll does not load.
+
+23 Sep 2011: Wouter
+	- windows README is a proper .txt files for dos.
+	- 0.4 release.
+	- trunk is 0.5 in development.
+
+22 Sep 2011: Wouter
+	- dnssec-trigger-control reprobe command from the commandline.
+	- dnssec-trigger-control hotspot_signon, forces insecure mode for
+	  a sign-on.  The reprobe command can be used to stop forced_insecure.
+	- added probe tcp80 and tcp443 as last resort.
+	- retry for insecure and disconnect cases with exponential backoff,
+	  start 10 seconds, max 24h.
+	- tcp retry after 20 seconds, in case more opens up or it was slow.
+
+21 Sep 2011: Wouter
+	- ignore UDP without QR flag: some DNS caches send echoes of the query
+	  back initially.  If we ignore them we catch a (100 msec later)
+	  correct answer later.  (or timeout if no answer comes).
+	- if probe is in progress it prints that in status.
+	- if no DNS servers via DHCP it prints that in status.
+	- antialiased fonts in windows native gui.
+
+20 Sep 2011: Wouter
+	- fix configure --with-gui, it did not change the gui but hooks.
+	- refactor GUI panel SSL feed to be more portable.
+	- fix stop command.
+	- native windows GUI.
+	- status 'dark' is now called 'nodnssec'.
+
+19 Sep 2011: Wouter
+	- fix so that if it cannot bind socket the server fails to start.
+	- fix so that on OSX no zombie process remains.
+	- kill -HUP performs a reload on UNIX. It only reload the strings
+	  and that config, it keeps the running probe results and open
+	  sockets to panels and certificates.
+	- include pangorc, pango.modules, loaders.cache (for gdk) and
+	  the pango-basic-win32.dll and gdk png loader dll (if present)
+	  in the windows installer.
+	- panel.exe uses the windows gui subsystem.  Include more pixloaders.
+	- added fedora spec and init script.
+
+16 Sep 2011: Wouter
+	- fix OSX get of DHCP options to use ipconfig API instead of faulty
+	  awk parse.
+
+15 Sep 2011: Wouter
+	- fix makefile dependencies for sed-ed output.
+	- tag 0.3. (0.2 was distributed with different contents).
+	- trunk has 0.4
+
+14 Sep 2011: Wouter
+	- icons in higher bitdepth, install and uninstall icons.
+	- stoppanels control command for installers to update that panel exe.
+	- tag 0.2
+	- trunk has 0.3
+
+13 Sep 2011: Wouter
+	- pick up SSID (for windows, OSX) to filter trigger with, so an SSID
+	  change from the wlan triggers a reprobe.
+	- set windres resource files, icons, log-format, useradmpermission
+	  and setup.exe script with NSIS, it includes dlls.
+
+12 Sep 2011: Wouter
+	- fix fd leaked every second by panel if the daemon was down.
+	- more robust outq_delete function in code notation.
+	- do not print ID values if mismatch (enabled on verbosity 4).
+	- print time of probe with results.
+	- fix double-close of FD in acceptfailure case.
+	- close log file when daemon exits.
+
+9 Sep 2011: Wouter
+	- can override nameserver settings on windows (needs administrator
+	  permissions) and clears them away (back to the default) on exit.
+	- fix not enough detection of network changes on OSX.
+	- get a probe after start on OSX.
+	- fix submit of disconnect state, submit "".
+	- fix resolvconf writes on OSX: more chance of winning resolv.conf
+	  which is a small race what with setting scutil at the same time,
+	  and sets it after userlogin because OSX reprobes at user login.
+
+8 Sep 2011: Wouter
+	- Fix that windows DHCP hook fires less often: only if list of network
+	  and GUID of adapter and IPs changes.
+	- unbound-control execute hook.
+	- reshook for windows.
+
+7 Sep 2011: Wouter
+	- dnssec-triggerd can run as a windows service.
+	- windows DHCP hook on network changes.
+	- support nm-tool NetworkManager (older version).
+
+6 Sep 2011: Wouter
+	- dnssec-trigger-keygen that works without shellscripts.  Can also
+	  generate for unbound.
+	- keygen for windows compiled (it works on other ports, but they have
+	  shell scripts).
+
+2 Sep 2011: Wouter
+	- GUI tray icon works on windows.
+	- minimal theme on windows.
+
+1 Sep 2011: Wouter
+	- install backups and uninstall restores resolv.conf.
+	- watch on OSX the network.plist and airport.plist files and not
+	  the entire directory, which changes too often.
+	- README and BSD LICENSE.
+	- renamed plist nl.nlnetlabs.x
+
+31 Aug 2011: Wouter
+	- cocoa and gtk build and install and uninstall make targets
+	- GTK autostart .desktop entry.
+	- man page.
+
+30 Aug 2011: Wouter
+	- osx xcode status item.
+	- you can test the Cocoa GUI with: cd osx/RiggerStatusItem/
+	  Build/Release and then open RiggerStatusItem.app --args -c /full/
+	  path/to/test.conf.  And have full paths inside test.conf as well.
+
+26 Aug 2011: Wouter
+	- status control command shows the latest probe results (and exits).
+	- use full path for unbound-control (for install in /opt of unbound).
+	- icons at 22px on OSX.
+	- osx dir and osx fixes: full paths, flush cache when secure again.
+	- use scutil to set DNS on osx.
+
+25 Aug 2011: Wouter
+	- OSX launchd and loginitem installed.
+
+24 Aug 2011: Wouter
+	- configure fixed --with.. and test for sleep and random.
+
+23 Aug 2011: Wouter
+	- configure adapted for windows compile.
+	- panel compiles and GUI shows with libGTK+-2.0 on windows.
+
+18 Aug 2011: Wouter
+	- INSTALL instructions.
+	- fixed for ldns linkage.
+	- fix generated key permissions, world readable for user keys.
+	- tag 0.1
+
+17 Aug 2011: Wouter
+	- noaction option that takes no action but pretends.
+	- fix linefeed in resolv.conf printout.
+	- unsafe test option works reliably.
+	- fix dialog destroy that deletes the dialog.
+	- alert icon has nicer exclamation mark.
+	- added configfile and example.conf.
+	- Reprobe command.
+
+16 Aug 2011: Wouter
+	- detect localhost in DHCP DNS servers and skip them, because a loop
+	  from the resolver to itself is not good.  Since localhost resolver
+	  may probe as a good DNS cache itself easily.
+	- can detect network disconnect and acts appropriately (very quiet).
+	- fix bug with active number of connections.
+	- fix nice exit for panel on quit.
+	- present insecure or disconnect choice.
+	- unbound control hooks.
+	- resolv.conf hooks.
+
+15 Aug 2011: Wouter
+	- log with time in readable format (to logfile), detects strftime.
+	- removed debug printouts.
+	- menu is positioned neatly under the statusicon.
+	- result window has icon set and a title.
+	- fix unref for result_window by reffing it in the init function.
+	- stop using deprecated glib function for tooltip.
+	- lint fixes.
+	- can handle NSEC DS denials if a zone is (temporarily) insecure,
+	  detects that the denial is from the parent and contains NSEC.
+
+12 Aug 2011: Wouter
+	- persistant SSL connections to the server.
+
+11 Aug 2011: Wouter
+	- detection probes code.
+
+10 Aug 2011: Wouter
+	- working osx script, netconfig script and networkmanager script.
+
+9 Aug 2011: Wouter
+	- daemon code.
+
+8 Aug 2011: Wouter
+	- import of mismash of files from Unbound (BSD licensed).

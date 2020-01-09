@@ -1,0 +1,22 @@
+#!0SHELL0
+#
+# NetworkManager trigger for in dispatcher.d
+# config items
+nmcli="nmcli"
+
+# implementation
+ifname="$1"
+action="$2"
+
+# get ips from NetworkManager
+if test -x "`which $nmcli 2>&1`"; then
+ips="`$nmcli -f IP4-DNS,IP6-DNS dev list | awk '{print $2;}'`"
+else
+ips="`nm-tool | grep 'DNS:' | awk '{print $2;}'`"
+fi
+# fix whitespace
+ips=`echo $ips`
+
+logger "dnssec-trigger-hook(networkmanager) $ifname $action DNS $ips"
+0sbindir0/dnssec-trigger-control submit "$ips"
+exit 0
