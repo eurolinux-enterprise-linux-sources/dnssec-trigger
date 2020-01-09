@@ -3,6 +3,8 @@ Description=Reconfigure local DNS(SEC) resolver on network change
 After=syslog.target network.target
 After=dnssec-triggerd-keygen.service
 Wants=dnssec-triggerd-keygen.service
+After=dnssec-triggerd-resolvconf-handle.service
+Wants=dnssec-triggerd-resolvconf-handle.service
 After=unbound.service
 Wants=unbound.service
 
